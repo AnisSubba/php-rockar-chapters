@@ -1,4 +1,7 @@
-<?php
+<?php 
+
+    require 'config.inc.php';
+
     $name = '';
     $gender = '';
     $color = '';
@@ -26,10 +29,7 @@
 
         if($ok){
             $db = new mysqli(
-                'localhost',
-                'root',
-                '',
-                'php');
+                MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
             $sql = sprintf(
                 "INSERT INTO users (name, gender, color) 
                 VALUES ('%s', '%s', '%s')",

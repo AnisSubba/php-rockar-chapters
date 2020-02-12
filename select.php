@@ -20,7 +20,6 @@
             htmlspecialchars($row['gender'], ENT_QUOTES),
             htmlspecialchars($row['id'], ENT_QUOTES),
             htmlspecialchars($row['id'], ENT_QUOTES)
-
         );
     } 
     $db->close();
