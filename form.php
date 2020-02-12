@@ -37,14 +37,15 @@
             } else {
             $languages = $_POST['languages'];
         };
-        if (!isset($_POST['comments']) || $_POST['comments'] === ''){
+        if (!isset($_POST['comments']
+         ) || $_POST['comments'] === ''){
             $ok = false;
         } else {
             $comments = $_POST['comments'];
         };
         if (!isset($_POST['tc']) || $_POST['tc'] === ''){
             $ok = false;
-        } else {
+        } else { 
             $tc = $_POST['tc'];
         };
 
@@ -73,25 +74,70 @@
      ?>"><br>
     Password: <input type = "password" name = "password"><br>
     Gender:
-        <input type = "radio" name = "gender" value = "f"> female
-        <input type = "radio" name = "gender" value = "m"> male
-        <input type = "radio" name = "gender" value = "o"> other <br/>
+        <input type = "radio" name = "gender" value = "f"><?php 
+            if ($gender === 'f'){
+                echo ' checked';
+                # pre checked in the source code when the user checks the female 
+                # radio button 
+            }
+        ?> female
+        <input type = "radio" name = "gender" value = "m"><?php 
+            if ($gender === 'm'){
+                echo ' checked';
+            }
+        ?> male
+        <input type = "radio" name = "gender" value = "o"><?php 
+            if ($gender === 'o'){
+                echo ' checked';
+            }
+        ?> other <br/>
     Favorite color:
         <select name = "color">
             <option value = "">Please Select</option>
-            <option value ="#f00">red</option>
-            <option value ="#0f0">green</option>
-            <option value ="#00f">blue</option>
+            <option value ="#f00"<?php
+                if ($color === '#f00'){
+                    echo ' selected';
+                }
+            ?>>red</option>
+            <option value ="#0f0"<?php
+                if ($color === '#0f0'){
+                    echo ' selected';
+                }
+            ?>>green</option>
+            <option value ="#00f"<?php
+                if ($color === '#00f'){
+                    echo ' selected';
+                }
+            ?>>blue</option>
         </select><br>
     Languages spoken:
         <select name = "languages[]" multiple size = "3">
-            <option value = "en">English</option>
-            <option value = "nep">Nepalese</option>
-            <option value = "fr">French</option>
+            <option value = "en"<?php
+                if (in_array('en', $languages)){
+                    echo ' selected';
+    # multi select pre-filled list
+                }
+            ?>>English</option>
+            <option value = "nep"<?php
+                if (in_array('nep', $languages)){
+                    echo ' selected';
+                }
+            ?>>Nepalese</option>
+            <option value = "fr"<?php
+                if (in_array('fr', $languages)){
+                    echo ' selected';
+                }
+            ?>>French</option>
         </select><br>
     Comments: <textarea name = "comments"> <?php
         echo htmlspecialchars($comments, ENT_QUOTES);
     ?></textarea><br>
-    <input type = "checkbox" name = "tc" value = "ok">I accept the T&amp;C
+    <input type = "checkbox" name = "tc" value = "ok"><?php 
+        if ($tc === 'ok'){
+            echo ' checked'; 
+    # prefilling form field will show in source code once it is checked in the form
+        }
+    ?>
+    I accept the T&amp;C<br>
     <input type = "submit" name = "submit" value = "Register">
     </form>
